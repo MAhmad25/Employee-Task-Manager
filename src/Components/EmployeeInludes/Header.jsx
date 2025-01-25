@@ -13,7 +13,12 @@ const EmployeeHeader = () => {
                   <h1 className="text-2xl md:text-3xl text-white tracking-tighter font-semibold">
                         Hello <span> {Username.username}🤗 </span>
                   </h1>
-                  <div onClick={() => navigate("/")}>
+                  <div
+                        onClick={() => {
+                              localStorage.removeItem("loggedInUser");
+                              navigate("/");
+                        }}
+                  >
                         <Button bgColor="bg-red-200" textColor="text-red-600" message={"Logout"} />
                   </div>
             </div>

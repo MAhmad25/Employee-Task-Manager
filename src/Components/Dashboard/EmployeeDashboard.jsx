@@ -12,9 +12,9 @@ const EmployeeDashboard = () => {
                         <Page404 />
                   ) : (
                         <>
+                              <EmployeeHeader />
                               <EmployeeTaskState />
                               <EmployeeTaskContainer />
-                              <EmployeeHeader />
                         </>
                   )}
             </div>

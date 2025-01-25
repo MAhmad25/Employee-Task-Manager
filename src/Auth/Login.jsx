@@ -12,8 +12,10 @@ const Login = () => {
             event.preventDefault();
             if (email.endsWith("@admin.com")) {
                   let admin = JSON.parse(localStorage.getItem("admin"));
-                  if (admin.email === email && admin.password === password) navigate(`/admin/${admin.id}`);
-                  else {
+                  if (admin.email === email && admin.password === password) {
+                        localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin", id: admin.id }));
+                        navigate(`/admin/${admin.id}`);
+                  } else {
                         toast.error("Email or password is incorret");
                         return;
                   }
@@ -24,6 +26,7 @@ const Login = () => {
                         toast.error("Email or password is incorrect");
                         return;
                   }
+                  localStorage.setItem("loggedInUser", JSON.stringify({ role: "employee", id: employee.id }));
                   navigate(`/employee/${employee.id}`);
             } else {
                   toast.error("Email or password is incorrect");
@@ -35,7 +38,7 @@ const Login = () => {
       };
       return (
             <div className="Bg flex justify-center items-center  max-w-screen h-screen">
-                  <section className="w-3/4 h-3/4 bg-[#FBFDFF] overflow-hidden rounded-xl">
+                  <section className="w-3/4 h-3/4 md:w-1/2  bg-[#FBFDFF] overflow-hidden rounded-xl">
                         <section className="blurBox flex justify-center items-center rounded-b-3xl w-full h-[25%]">
                               <div className="w-14 flex justify-center items-center h-14 rounded-xl shadow-md shadow-[#cdedffb7] bg-white">
                                     <FiLogIn size={"1.7rem"} />
@@ -46,7 +49,7 @@ const Login = () => {
                               <p className="text-center text-sm leading-none font-Satoshi text-[#757575] w-[60%]">Login with your account to start managing employee Task </p>
                         </section>
                         <section className="w-full flex flex-col justify-center items-center gap-4 mt-5">
-                              <form className="w-full flex justify-center items-center gap-3 flex-col">
+                              <form className="w-full flex justify-center items-center gap-4 flex-col">
                                     <section className="relative">
                                           <div className="absolute left-2 top-1/2 -translate-y-1/2">
                                                 <MdEmail color="#757575" />
