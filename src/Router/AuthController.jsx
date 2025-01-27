@@ -10,7 +10,7 @@ const AuthController = () => {
       const navigate = useNavigate();
       useEffect(() => {
             const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-            console.log(loggedInUser);
+            localStorage.setItem("setInitials");
             if (loggedInUser && loggedInUser.role === "admin") {
                   let admin = JSON.parse(localStorage.getItem("admin"));
                   navigate(`/admin/${admin.id}`);

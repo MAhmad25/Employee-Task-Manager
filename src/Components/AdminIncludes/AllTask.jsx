@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 const AllTask = () => {
       const { id } = useParams();
+      const allEmployees = JSON.parse(localStorage.getItem("employee"));
       return (
             <div className="w-full relative p-5 h-full  bg-zinc-800 text-white">
                   <div className="w-full flex justify-center mb-5">
@@ -21,40 +22,24 @@ const AllTask = () => {
                               <h2 className="py-1 px-2 bg-red-700 text-red-200 rounded-xl">Failed</h2>
                         </div>
                         <hr />
-                        <div className="w-full rounded-2xl mt-1 flex  justify-between items-center text-lg font-semibold py-5 px-7 font-Satoshi border-[0.5px] border-zinc-400">
-                              <h2>Ahmad</h2>
-                              <h2 className="text-yellow-500">2</h2>
-                              <h2 className="text-green-500">4</h2>
-                              <h2 className="text-red-500">3</h2>
-                        </div>
+                        {allEmployees.map((eachEmployee, employeeIndex) => (
+                              <div key={employeeIndex} className="w-full">
+                                    {/* Employee Name */}
+                                    <div className="w-full flex justify-between items-center bg-zinc-700 text-white py-3 px-5 rounded-lg">
+                                          <h2 className="text-xl font-Satoshi">{eachEmployee.username}</h2>
+                                    </div>
 
-                        <div className="w-full rounded-2xl mt-1 flex  justify-between items-center text-lg font-semibold py-5 px-7 font-Satoshi border-[0.5px] border-zinc-400">
-                              <h2>Ahmad</h2>
-                              <h2 className="text-yellow-500">2</h2>
-                              <h2 className="text-green-500">4</h2>
-                              <h2 className="text-red-500">3</h2>
-                        </div>
-
-                        <div className="w-full rounded-2xl mt-1 flex  justify-between items-center text-lg font-semibold py-5 px-7 font-Satoshi border-[0.5px] border-zinc-400">
-                              <h2>Ahmad</h2>
-                              <h2 className="text-yellow-500">2</h2>
-                              <h2 className="text-green-500">4</h2>
-                              <h2 className="text-red-500">3</h2>
-                        </div>
-
-                        <div className="w-full rounded-2xl mt-1 flex  justify-between items-center text-lg font-semibold py-5 px-7 font-Satoshi border-[0.5px] border-zinc-400">
-                              <h2>Ahmad</h2>
-                              <h2 className="text-yellow-500">2</h2>
-                              <h2 className="text-green-500">4</h2>
-                              <h2 className="text-red-500">3</h2>
-                        </div>
-
-                        <div className="w-full rounded-2xl mt-1 flex  justify-between items-center text-lg font-semibold py-5 px-7 font-Satoshi border-[0.5px] border-zinc-400">
-                              <h2>Ahmad</h2>
-                              <h2 className="text-yellow-500">2</h2>
-                              <h2 className="text-green-500">4</h2>
-                              <h2 className="text-red-500">3</h2>
-                        </div>
+                                    {/* Task Details for Each Employee */}
+                                    {eachEmployee.tasks.map((eachTask, taskIndex) => (
+                                          <div key={taskIndex} className="w-full rounded-2xl mt-1 flex justify-between items-center text-lg font-semibold py-5 px-7 font-Satoshi border-[0.5px] border-zinc-400">
+                                                <h2>{eachTask.title}</h2>
+                                                <h2 className="text-yellow-500">{eachTask.active.toString()}</h2>
+                                                <h2 className="text-green-500">{eachTask.completed.toString()}</h2>
+                                                <h2 className="text-red-500">{eachTask.failed.toString()}</h2>
+                                          </div>
+                                    ))}
+                              </div>
+                        ))}
                   </div>
             </div>
       );
