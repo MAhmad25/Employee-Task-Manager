@@ -1,4 +1,4 @@
-import SetData from "./Contexts/SetData";
+import SetData from "./utils/SetData";
 import AuthController from "./Router/AuthController";
 
 const App = () => {
