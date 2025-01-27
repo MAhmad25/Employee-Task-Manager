@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useState } from "react";
 import { toast } from "react-toastify";
-const CreateTask = () => {
+const AssignTask = () => {
       const { id } = useParams();
       const navigate = useNavigate();
 
@@ -34,15 +34,15 @@ const CreateTask = () => {
                         <form onSubmit={handleSubmit}>
                               <section className="mt-2">
                                     <h1 className="font-semibold text-xl mb-2">Task Title</h1>
-                                    <input value={title} onChange={(e) => setTitle(e.target.value)} required className="outline-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full  p-3" type="text" placeholder="Title" />
+                                    <input minLength={5} value={title} onChange={(e) => setTitle(e.target.value)} required className="outline-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full  p-3" type="text" placeholder="Title" />
                               </section>
                               <section className="mt-1">
                                     <h1 className="font-semibold text-xl mb-2">Task Detail</h1>
-                                    <textarea value={taskDetail} onChange={(e) => setTaskDetail(e.target.value)} rows="3" required className="outline-none resize-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full  p-3" type="text" placeholder="Description" />
+                                    <textarea minLength={10} value={taskDetail} onChange={(e) => setTaskDetail(e.target.value)} rows="3" required className="outline-none resize-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full  p-3" type="text" placeholder="Description" />
                               </section>
                               <section className="mt-1">
                                     <h1 className="font-semibold text-xl mb-2">Deadline</h1>
-                                    <input value={taskDeadline} onChange={(e) => setDeadline(e.target.value)} required className="outline-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full p-3" type="date" />
+                                    <input maxLength={10} value={taskDeadline} onChange={(e) => setDeadline(e.target.value)} required className="outline-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full p-3" type="date" />
                               </section>
                               <section className="mt-1">
                                     <h1 className="font-semibold text-xl mb-2">Assign to</h1>
@@ -56,7 +56,7 @@ const CreateTask = () => {
                               </section>
                               <section className="mt-2 mb-2">
                                     <h1 className="font-semibold text-xl mb-2">Category of Task</h1>
-                                    <input value={taskCategory} onChange={(e) => setTaskCategory(e.target.value)} required className="outline-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full p-3" type="text" placeholder="Dev, Design, Presentation.." />
+                                    <input minLength={2} value={taskCategory} onChange={(e) => setTaskCategory(e.target.value)} required className="outline-none text-lg rounded-xl bg-zinc-800 border-[0.5px] border-zinc-300 w-full p-3" type="text" placeholder="Dev, Design, Presentation.." />
                               </section>
                               <button className="outline-none mt-5 rounded-full text-xl text-white bg-blue-700 w-full py-2 px-16 border-none" type="submit">
                                     Assign
@@ -67,4 +67,4 @@ const CreateTask = () => {
       );
 };
 
-export default CreateTask;
+export default AssignTask;

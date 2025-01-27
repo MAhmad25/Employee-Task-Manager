@@ -27,8 +27,8 @@ const AuthController = () => {
                   <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/employee/:id" element={<EmployeeDashboard />} />
-                        <Route path="/admin/:id/create" element={<CreateTask />} />
                         <Route path="/admin/:id" element={<AdminDashBoard />} />
+                        <Route path="/admin/:id/create" element={<CreateTask />} />
                         <Route path="*" element={<Page404 />} />
                   </Routes>
             </>
