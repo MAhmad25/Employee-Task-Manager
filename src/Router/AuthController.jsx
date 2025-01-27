@@ -3,14 +3,13 @@ import Login from "../Auth/Login";
 import { useEffect } from "react";
 import EmployeeDashboard from "../Components/Dashboard/EmployeeDashboard";
 import AdminDashBoard from "../Components/Dashboard/AdminDashBoard";
-import CreateTask from "../Components/AdminIncludes/CreateTask";
+import CreateTask from "../Components/AdminIncludes/Assign";
 import Page404 from "../Components/pages/Page404";
 
 const AuthController = () => {
       const navigate = useNavigate();
       useEffect(() => {
             const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-            localStorage.setItem("setInitials");
             if (loggedInUser && loggedInUser.role === "admin") {
                   let admin = JSON.parse(localStorage.getItem("admin"));
                   navigate(`/admin/${admin.id}`);
@@ -20,15 +19,16 @@ const AuthController = () => {
                   navigate(`/employee/${employee.id}`);
             } else {
                   navigate("/");
+                  return;
             }
       }, []);
       return (
             <>
                   <Routes>
+                        <Route path="/" element={<Login />} />
                         <Route path="/employee/:id" element={<EmployeeDashboard />} />
                         <Route path="/admin/:id/create" element={<CreateTask />} />
                         <Route path="/admin/:id" element={<AdminDashBoard />} />
-                        <Route path="/" element={<Login />} />
                         <Route path="*" element={<Page404 />} />
                   </Routes>
             </>
