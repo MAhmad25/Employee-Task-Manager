@@ -5,10 +5,12 @@ import EmployeeTaskContainer from "../EmployeeInludes/EmployeeTaskContainer";
 import EmployeeTaskState from "../EmployeeInludes/EmployeeTaskState";
 import Page404 from "../pages/Page404";
 const EmployeeDashboard = () => {
+      const { id } = useParams();
       const navigate = useNavigate();
       let specificEmployee = null;
+      //? Important
+      // TODO Remove Try Catch Block and use if else block
       try {
-            const { id } = useParams();
             specificEmployee = JSON.parse(localStorage.getItem("employee")).find((eachEmployee) => eachEmployee.id === id);
       } catch (error) {
             console.log(error.message);
@@ -21,9 +23,9 @@ const EmployeeDashboard = () => {
                         <Page404 />
                   ) : (
                         <>
-                              <EmployeeHeader />
-                              <EmployeeTaskState />
-                              <EmployeeTaskContainer />
+                              <EmployeeHeader id={id} />
+                              <EmployeeTaskState id={id} />
+                              <EmployeeTaskContainer id={id} />
                         </>
                   )}
             </div>

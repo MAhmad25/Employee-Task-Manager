@@ -1,8 +1,8 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button";
 
-const EmployeeHeader = () => {
-      const { id } = useParams();
+const EmployeeHeader = ({ id }) => {
       const { pathname } = useLocation();
       const navigate = useNavigate();
       let Username = null;

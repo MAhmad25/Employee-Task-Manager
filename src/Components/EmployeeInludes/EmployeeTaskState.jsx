@@ -1,8 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext";
 
-const EmployeeTaskState = () => {
-      let { id } = useParams();
-      let specificEmployee = JSON.parse(localStorage.getItem("employee")).find((eachEmployee) => eachEmployee.id === id);
+/* eslint-disable react/prop-types */
+const EmployeeTaskState = ({ id }) => {
+      const employees = JSON.parse(localStorage.getItem("employee"));
+      const { allEmployees } = useContext(UserContext);
+      const specificEmployee = (allEmployees && allEmployees.find((eachEmployee) => eachEmployee.id === id)) || employees.find((eachEmployee) => eachEmployee.id === id);
       const showState = (state) => {
             return specificEmployee.tasks.filter((task) => task[state]).length;
       };
