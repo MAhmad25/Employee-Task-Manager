@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { getFromStorage, setInStorage } from "../../utils/StorageAccess";
 const AssignTask = () => {
       const { id } = useParams();
       const navigate = useNavigate();
@@ -14,10 +15,10 @@ const AssignTask = () => {
       const handleSubmit = (event) => {
             event.preventDefault();
             let wrappedTask = { title, description: taskDetail, active: true, category: taskCategory, completed: false, deadline: taskDeadline, failed: false, newTask: true };
-            let allEmployee = JSON.parse(localStorage.getItem("employee"));
+            let allEmployee = getFromStorage("employee");
             let findSelectedEmployee = allEmployee.find((eachEmployee) => employee === eachEmployee.username);
             findSelectedEmployee.tasks.push(wrappedTask);
-            localStorage.setItem("employee", JSON.stringify(allEmployee));
+            setInStorage("employee", allEmployee);
             toast.success("Task Assigned Successfully");
             navigate(-1);
       };

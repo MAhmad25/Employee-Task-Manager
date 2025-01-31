@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { nanoid } from "nanoid";
+import { getFromStorage, setInStorage } from "../utils/StorageAccess";
 
 const SetData = () => {
-      const isDataSet = JSON.parse(localStorage.getItem("dataSetted")) || false;
+      const isDataSet = getFromStorage("dataSetted") || false;
       useEffect(() => {
             if (isDataSet) return;
             const employees = [
@@ -213,10 +214,9 @@ const SetData = () => {
                   email: "admin@admin.com",
                   password: "Admin!Secure2025",
             };
-
-            localStorage.setItem("employee", JSON.stringify(employees));
-            localStorage.setItem("admin", JSON.stringify(admin));
-            localStorage.setItem("dataSetted", JSON.stringify(true));
+            setInStorage("employee", employees);
+            setInStorage("admin", admin);
+            setInStorage("dataSetted", true);
       }, []);
 };
 export default SetData;

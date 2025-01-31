@@ -4,6 +4,7 @@ import { FiLogIn } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { getFromStorage, setInStorage } from "../utils/StorageAccess";
 const Login = () => {
       const navigate = useNavigate();
       let [email, setEmail] = useState("");
@@ -11,22 +12,22 @@ const Login = () => {
       const handleSubmit = (event) => {
             event.preventDefault();
             if (email.endsWith("@admin.com")) {
-                  let admin = JSON.parse(localStorage.getItem("admin"));
+                  let admin = getFromStorage("admin");
                   if (admin.email === email && admin.password === password) {
-                        localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin", id: admin.id }));
+                        setInStorage("loggedInUser", { role: "admin", id: admin.id });
                         navigate(`/admin/${admin.id}`);
                   } else {
                         toast.error("Email or password is incorret");
                         return;
                   }
             } else if (email.endsWith("@employee.com")) {
-                  let employees = JSON.parse(localStorage.getItem("employee"));
+                  let employees = getFromStorage("employee");
                   let employee = employees.find((eachEmployee) => eachEmployee.email === email && eachEmployee.password === password);
                   if (!employee) {
                         toast.error("Email or password is incorrect");
                         return;
                   }
-                  localStorage.setItem("loggedInUser", JSON.stringify({ role: "employee", id: employee.id }));
+                  setInStorage("loggedInUser", { role: "employee", id: employee.id });
                   navigate(`/employee/${employee.id}`);
             } else {
                   toast.error("Email or password is incorrect");

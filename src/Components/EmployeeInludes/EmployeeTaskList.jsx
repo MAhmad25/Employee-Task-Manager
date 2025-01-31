@@ -2,13 +2,14 @@
 import Button from "./Button";
 import { FcApproval } from "react-icons/fc";
 import { FcHighPriority } from "react-icons/fc";
+import { getFromStorage, setInStorage } from "../../utils/StorageAccess";
 
 const EmployeeTaskList = ({ eachTask, index }) => {
       const handleTask = (index, btn) => {
-            const { id } = JSON.parse(localStorage.getItem("loggedInUser"));
-            let allEmployees = JSON.parse(localStorage.getItem("employee"));
+            const { id } = getFromStorage("loggedInUser");
+            let allEmployees = getFromStorage("employee");
             let specificEmployee = allEmployees.find((eachEmployee) => eachEmployee.id === id);
-            let specificTask = specificEmployee.tasks.find((eachTask, eachTaskIndex) => eachTaskIndex === index);
+            let specificTask = specificEmployee.tasks.find((_, eachTaskIndex) => eachTaskIndex === index);
             if (btn == "completed") {
                   specificTask.completed = true;
                   if (specificTask.failed) specificTask.failed = false;
@@ -17,7 +18,7 @@ const EmployeeTaskList = ({ eachTask, index }) => {
                   specificTask.failed = true;
                   if (specificTask.completed) specificTask.completed = false;
             }
-            localStorage.setItem("employee", JSON.stringify(allEmployees));
+            setInStorage("employee", allEmployees);
             window.dispatchEvent(new Event("localStorageUpdated"));
       };
       return (

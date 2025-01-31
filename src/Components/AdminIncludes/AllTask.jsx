@@ -1,8 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
+import { getFromStorage } from "../../utils/StorageAccess";
 const AllTask = () => {
       const { id } = useParams();
-      const allEmployees = JSON.parse(localStorage.getItem("employee"));
+      const allEmployees = getFromStorage("employee");
       return (
             <div className="w-full relative p-5 h-full  bg-zinc-800 text-white">
                   <div className="w-full flex justify-center mb-5">

@@ -1,7 +1,7 @@
-import AuthController from "./Router/AuthController";
+import Routers from "./Router/Routers";
 
 const App = () => {
-      return <AuthController />;
+      return <Routers />;
 };
 
 export default App;

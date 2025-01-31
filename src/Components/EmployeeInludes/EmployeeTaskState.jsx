@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../../Contexts/UserContext";
+import { getFromStorage } from "../../utils/StorageAccess";
 
 /* eslint-disable react/prop-types */
 const EmployeeTaskState = ({ id }) => {
-      const employees = JSON.parse(localStorage.getItem("employee"));
+      const employees = getFromStorage("employee");
       const { allEmployees } = useContext(UserContext);
       const specificEmployee = (allEmployees && allEmployees.find((eachEmployee) => eachEmployee.id === id)) || employees.find((eachEmployee) => eachEmployee.id === id);
       const showState = (state) => {

@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import SetData from "../utils/SetData";
+import SetData from "../config/SetData";
+import { getFromStorage } from "../utils/StorageAccess";
 export const UserContext = createContext();
 const Context = (props) => {
       SetData();
       let [users, setUser] = useState({});
       useEffect(() => {
             const fetchandSetUser = () => {
-                  const allEmployees = JSON.parse(localStorage.getItem("employee"));
-                  const admin = JSON.parse(localStorage.getItem("admin"));
+                  const allEmployees = getFromStorage("employee");
+                  const admin = getFromStorage("admin");
                   setUser({ allEmployees, admin });
             };
             fetchandSetUser();
