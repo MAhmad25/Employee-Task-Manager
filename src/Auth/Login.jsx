@@ -57,13 +57,13 @@ const Login = () => {
                                           <div className="absolute left-2 top-1/2 -translate-y-1/2">
                                                 <MdEmail color="#757575" />
                                           </div>
-                                          <input value={email} onChange={(e) => setEmail(e.target.value)} required className="outline-none focus:border-[0.5px] border-zinc-700 rounded-xl bg-[#EFF3F6]  w-full pl-10 py-1" type="email" placeholder="Email" />
+                                          <input name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="outline-none focus:border-[0.5px] border-zinc-700 rounded-xl bg-[#EFF3F6]  w-full pl-10 py-1" type="email" placeholder="Email" />
                                     </section>
                                     <section className="relative">
                                           <div className="absolute left-2 top-1/2 -translate-y-1/2">
                                                 <FaLock color="#757575" />
                                           </div>
-                                          <input value={password} onChange={(e) => setPassword(e.target.value)} className="outline-none focus:border-[0.5px] border-zinc-700 rounded-xl bg-[#EFF3F6] w-full pl-10 py-1" type="password" placeholder="Password" />
+                                          <input name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="outline-none focus:border-[0.5px] border-zinc-700 rounded-xl bg-[#EFF3F6] w-full pl-10 py-1" type="password" placeholder="Password" />
                                     </section>
                                     <section>
                                           <button onClick={handleSubmit} className="outline-none rounded-full text-white bg-[#24252D] w-full py-2 px-16 border-none" type="submit">

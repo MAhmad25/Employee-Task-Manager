@@ -1,6 +1,9 @@
 import { nanoid } from "nanoid";
-import { setInStorage } from "../utils/StorageAccess";
+import { getFromStorage, setInStorage } from "../utils/StorageAccess";
+
 export const InitializingData = () => {
+      const isDataSet = getFromStorage("dataSetted") || false;
+      if (isDataSet) return;
       const employees = [
             {
                   id: nanoid(),
