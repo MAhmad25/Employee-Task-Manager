@@ -5,14 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { getFromStorage, setInStorage } from "../utils/StorageAccess";
+import { InitializingData } from "../config/InitialData";
 const Login = () => {
       const navigate = useNavigate();
       let [email, setEmail] = useState("");
       let [password, setPassword] = useState("");
+      if (email.length || password.length) InitializingData();
       const handleSubmit = (event) => {
             event.preventDefault();
             if (email.endsWith("@admin.com")) {
-                  let admin = getFromStorage("admin");
+                  let admin = getFromStorage("admin") || false;
                   if (admin.email === email && admin.password === password) {
                         setInStorage("loggedInUser", { role: "admin", id: admin.id });
                         navigate(`/admin/${admin.id}`);
@@ -21,7 +23,7 @@ const Login = () => {
                         return;
                   }
             } else if (email.endsWith("@employee.com")) {
-                  let employees = getFromStorage("employee");
+                  let employees = getFromStorage("employee") || false;
                   let employee = employees.find((eachEmployee) => eachEmployee.email === email && eachEmployee.password === password);
                   if (!employee) {
                         toast.error("Email or password is incorrect");
