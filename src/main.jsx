@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Context from "./Contexts/UserContext.jsx";
 createRoot(document.getElementById("root")).render(
       <Context>
-            <BrowserRouter basename={import.meta.env.BASE_URL}>
+            <BrowserRouter>
                   <App />
                   <ToastContainer position="top-center" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition={Slide} />
             </BrowserRouter>
