@@ -4,15 +4,20 @@ import EmployeeTaskContainer from "../EmployeeInludes/EmployeeTaskContainer";
 import EmployeeTaskState from "../EmployeeInludes/EmployeeTaskState";
 import Page404 from "../pages/Page404";
 import { getFromStorage } from "../../utils/StorageAccess";
+import { useEffect, useState } from "react";
 const EmployeeDashboard = () => {
       const { id } = useParams();
       const navigate = useNavigate();
-      const allEmployees = getFromStorage("employee");
-      if (!allEmployees) {
-            navigate("/");
-            return;
-      }
-      const specificEmployee = allEmployees.find((eachEmployee) => eachEmployee.id === id);
+      const [specificEmployee, setSpecificEmployee] = useState(false);
+      useEffect(() => {
+            const allEmployees = getFromStorage("employee");
+            let find = allEmployees.find((eachEmployee) => eachEmployee.id === id);
+            setSpecificEmployee(Boolean(find));
+            if (!allEmployees) {
+                  navigate("/");
+                  return;
+            }
+      }, [id, navigate]);
       return (
             <div className="w-screen md:overflow-auto overflow-hidden bg-zinc-800 h-screen">
                   {!specificEmployee ? (
