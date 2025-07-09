@@ -22,7 +22,7 @@ const AuthController = () => {
                   navigate("/");
                   return;
             }
-      }, []);
+      }, [navigate]);
       return (
             <>
                   <Routes>
